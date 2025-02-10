@@ -1,0 +1,166 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "location" : {
+        "type": "string",
+        "defaultValue": "eastus",
+        "metadata": {
+          "description": "Location"
+        }
+      },
+      "domain": {
+          "type": "string",
+          "defaultValue": "",
+          "metadata": {
+              "description": "Domain Prefix"
+          }
+      },
+      "pullSecret": {
+          "type": "securestring",
+          "metadata": {
+              "description": "Pull secret from cloud.redhat.com. The json should be input as a string"
+          }
+      },
+      "clusterVnetName": {
+          "type": "string",
+          "defaultValue": "aro-vnet",
+          "metadata": {
+              "description": "Name of ARO vNet"
+          }
+      },
+      "clusterVnetCidr": {
+          "type": "string",
+          "defaultValue": "10.100.0.0/15",
+          "metadata": {
+              "description": "ARO vNet Address Space"
+          }
+      },
+      "workerSubnetCidr": {
+          "type": "string",
+          "defaultValue": "10.100.70.0/23",
+          "metadata": {
+              "description": "Worker node subnet address space"
+          }
+      },
+      "masterSubnetCidr": {
+          "type": "string",
+          "defaultValue": "10.100.76.0/24",
+          "metadata": {
+              "description": "Master node subnet address space"
+          }
+      },
+      "masterVmSize" : {
+          "type": "string",
+          "defaultValue": "Standard_D8s_v3",
+          "metadata": {
+              "description": "Master Node VM Type"
+          }
+      },
+      "workerVmSize": {
+          "type": "string",
+          "defaultValue": "Standard_D4s_v3",
+          "metadata": {
+              "description": "Worker Node VM Type"
+          }
+      },
+      "workerVmDiskSizeGB": {
+          "type" : "int",
+          "defaultValue": 128,
+          "minValue": 128,
+          "metadata": {
+              "description": "Worker Node Disk Size in GB"
+          }
+      },
+      "workerCount": {
+          "type": "int",
+          "defaultValue": 3,
+          "minValue": 3,
+          "metadata": {
+              "description": "Number of Worker Nodes"
+          }
+      },
+      "podCidr": {
+          "type": "string",
+          "defaultValue": "10.128.0.0/14",
+          "metadata": {
+              "description": "Cidr for Pods"
+          }
+      },
+      "serviceCidr": {
+          "type": "string",
+          "defaultValue": "172.30.0.0/16",
+          "metadata": {
+              "description": "Cidr of service"
+          }
+      },
+      "clusterName" : {
+        "type": "string",
+        "metadata": {
+          "description": "Unique name for the cluster"
+        }
+      },
+      "resourceGroupName": {
+          "type": "string",
+          "metadata": {
+              "description": "Name of the resource group"
+          }
+      },
+      "tags": {
+          "type": "object",
+          "defaultValue" : {
+              "env": "Dev",
+              "dept": "Ops"
+          },
+          "metadata": {
+              "description": "Tags for resources"
+          }
+      },
+      "apiServerVisibility": {
+          "type": "string",
+          "allowedValues": [
+              "Private",
+              "Public"
+          ],
+          "defaultValue": "Public",
+          "metadata": {
+              "description": "Api Server Visibility"
+          }
+      },
+      "ingressVisibility": {
+          "type": "string",
+          "allowedValues": [
+              "Private",
+              "Public"
+          ],
+          "defaultValue": "Public",
+          "metadata": {
+              "description": "Ingress Visibility"
+          }
+      },
+      "aadClientId" : {
+        "type": "securestring",
+        "metadata": {
+          "description": "The Application ID of an Azure Active Directory client application"
+        }
+      },
+      "aadObjectId": {
+          "type": "securestring",
+          "metadata": {
+              "description": "The Object ID of an Azure Active Directory client application"
+          }
+      },
+      "aadClientSecret" : {
+        "type":"securestring",
+        "metadata": {
+          "description": "The secret of an Azure Active Directory client application"
+        }
+      },
+      "rpObjectId": {
+          "type": "securestring",
+          "metadata": {
+              "description": "The ObjectID of the Resource Provider Service Principal"
+          }
+      }
+    }
+}
